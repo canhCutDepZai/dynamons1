@@ -23,9 +23,9 @@ public class GameScreen implements Screen {
         stage = new Stage();
         background = new BaseActor(new Texture("background1/background1.1.png"), 0, 0);
         background.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        main = new Character(new Texture("anh/chuot.png"), (float) (Gdx.graphics.getWidth()/5.5), (float) (Gdx.graphics.getHeight()/8.4));
+        main = new Character(new Texture("anh/chuot.png"), (float) (Gdx.graphics.getWidth()/5.5), (float) (Gdx.graphics.getHeight()/8.4), 100, 25, 15, 0);
         main.setScale(1);
-        enemy = new Character(new Texture("mons1.png"), (float) (Gdx.graphics.getWidth()/1.9), (float) (Gdx.graphics.getHeight()/2));
+        enemy = new Character(new Texture("mons1.png"), (float) (Gdx.graphics.getWidth()/1.9), (float) (Gdx.graphics.getHeight()/2), 150, 10, 10, 0);
         stage.addActor(background);
         stage.addActor(main);
         stage.addActor(enemy);

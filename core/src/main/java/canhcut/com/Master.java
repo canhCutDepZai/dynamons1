@@ -1,16 +1,13 @@
 package canhcut.com;
 
-import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
-import com.badlogic.gdx.utils.ScreenUtils;
 
 /** {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms. */
 public class Master extends Game {
@@ -24,10 +21,6 @@ public class Master extends Game {
     @Override
     public void create() {
 
-        camera = new OrthographicCamera();
-        camera.setToOrtho( false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight() );
-        setScreen( new MenuScreen(this));
-
         batch = new SpriteBatch();
         FreeTypeFontGenerator fontGenerator = new FreeTypeFontGenerator(Gdx.files.internal("Lonely Cake.ttf"));
         FreeTypeFontGenerator.FreeTypeFontParameter fontParameters = new FreeTypeFontGenerator.FreeTypeFontParameter();
@@ -35,6 +28,12 @@ public class Master extends Game {
         fontParameters.color = Color.BLACK;
         font = fontGenerator.generateFont(fontParameters);
         fontGenerator.dispose();
+
+        camera = new OrthographicCamera();
+        camera.setToOrtho( false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight() );
+        setScreen( new StartScreen(this));
+
+
     }
 
     @Override

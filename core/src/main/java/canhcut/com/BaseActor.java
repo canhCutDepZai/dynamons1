@@ -5,11 +5,11 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 
-public class BaseActor extends Actor{
+public class BaseActor extends Actor {
     TextureRegion texture;
 
 
-    BaseActor(Texture texture, float x, float y ){
+    BaseActor(Texture texture, float x, float y) {
         this.texture = new TextureRegion(texture);
         setPosition(x, y);
         setSize(texture.getWidth(), texture.getHeight());

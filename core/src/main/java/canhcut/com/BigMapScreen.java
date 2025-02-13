@@ -1,7 +1,6 @@
 package canhcut.com;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.*;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -20,6 +19,10 @@ public class BigMapScreen implements Screen {
 
         this.game = _game;
     }
+
+    float lastTouchX;
+    float lastTouchY;
+    boolean isDragging = false ;
 
 
 
@@ -42,17 +45,88 @@ public class BigMapScreen implements Screen {
 
         stage = new Stage();
 
-        bigmapBackground = new BaseActor(new Texture("bigmap.jpg"), 0,0);
-        bigmapBackground.setSize(540, 960);
+        bigmapBackground = new BaseActor(new Texture("bigmap1.PNG"), 0,0);
+        bigmapBackground.setSize(1582, 1136);
         stage.addActor(bigmapBackground);
 
         stage.addActor(begin);
-        Gdx.input.setInputProcessor(stage);
+
+        InputMultiplexer multiPlexer;
+
+        multiPlexer = new InputMultiplexer();
+        multiPlexer.addProcessor(stage);
+        multiPlexer.addProcessor(new InputAdapter() {
+            @Override
+            public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+                lastTouchX = screenX;
+                lastTouchY = screenY;
+                isDragging = true;
+                return true;
+            }
+
+            @Override
+            public boolean touchDragged(int screenX, int screenY, int pointer) {
+                if(isDragging){
+                    float deltaX = lastTouchX - screenX;
+                    float deltaY = screenY - lastTouchY;
+
+                    float newX = stage.getCamera().position.x + deltaX;
+                    float newY = stage.getCamera().position.y + deltaY;
+
+                    stage.getCamera().position.set(newX, newY, 0);
+
+                    lastTouchX = screenX;
+                    lastTouchY = screenY;
+
+                }
+                return true;
+            }
+
+            @Override
+            public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+                isDragging = false;
+                return true;
+            }
+        });
+
+        Gdx.input.setInputProcessor(multiPlexer);
 
     }
 
     @Override
     public void render(float v) {
+
+        if(Gdx.input.isKeyPressed(Input.Keys.UP)) {
+            stage.getCamera().position.y += 2;
+        }
+
+        if(Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
+            stage.getCamera().position.y -= 2;
+
+        }
+        if(Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+            stage.getCamera().position.x -= 2;
+
+        }
+        if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+            stage.getCamera().position.x += 2;
+
+        }
+
+        if(stage.getCamera().position.x < 540/2) {
+            stage.getCamera().position.x = 540/2;
+        }
+        if(stage.getCamera().position.x > 1582 - 540/2) {
+            stage.getCamera().position.x = 1582 - 540/2;
+        }
+        if(stage.getCamera().position.y < 960/2) {
+            stage.getCamera().position.y = 960/2;
+        }
+        if(stage.getCamera().position.y > 1136 - 960/2) {
+            stage.getCamera().position.y = 1136 - 960/2;
+        }
+
+
         stage.act();
         stage.draw();
 

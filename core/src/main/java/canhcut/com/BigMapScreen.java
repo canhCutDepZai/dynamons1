@@ -10,10 +10,13 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.ScreenUtils;
 
+
 public class BigMapScreen implements Screen {
     Master game;
     Stage stage;
     BaseActor bigmapBackground;
+    BaseActor event;
+    Area area1, area2, area3, area4, area5, area6, area7, area8, area9, area10, area11, area12, area13, area14, area15, area16, area17, area18;
 
     BigMapScreen(Master _game) {
 
@@ -24,37 +27,128 @@ public class BigMapScreen implements Screen {
     float lastTouchY;
     boolean isDragging = false ;
 
+    Stage stage1;
+
+
 
 
     @Override
     public void show() {
-        TextButton.TextButtonStyle style = new TextButton.TextButtonStyle();
-        style.font = game.font;
-        style.up = new TextureRegionDrawable(new Texture("play.png"));
-
-        TextButton begin = new TextButton("", style);
-        begin.setPosition(Gdx.graphics.getWidth()/2 - begin.getWidth()/2, Gdx.graphics.getHeight()/2 - begin.getHeight()/2);
-
-
-        begin.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                game.setScreen(new BattleScreen(game));
-            }
-        });
+//        TextButton.TextButtonStyle style = new TextButton.TextButtonStyle();
+//        style.font = game.font;
+//        style.up = new TextureRegionDrawable(new Texture("area empty.png"));
+//        TextButton begin1 = new TextButton("", style);
+//        begin1.setPosition(487 , 267);
+//
+//        style.font = game.font ;
+//        style.up = new TextureRegionDrawable(new Texture("area empty.png"));
+//        TextButton begin2 = new TextButton("", style);
+//        begin2.setPosition(338 , 313);
+//
+//        style.font = game.font ;
+//        style.up = new TextureRegionDrawable(new Texture("area empty.png"));
+//        TextButton begin3 = new TextButton("", style);
+//        begin3.setPosition(259 , 404);
+//
+//        style.font = game.font ;style.up = new TextureRegionDrawable(new Texture("area empty.png"));
+//        TextButton begin4 = new TextButton("", style);
+//        begin4.setPosition(332 , 473);
+//
+//        style.font = game.font ;style.up = new TextureRegionDrawable(new Texture("area empty.png"));
+//        TextButton begin5 = new TextButton("", style);
+//        begin5.setPosition(373 , 534);
+//
+//        style.font = game.font ;style.up = new TextureRegionDrawable(new Texture("area empty.png"));
+//        TextButton begin6 = new TextButton("", style);
+//        begin6.setPosition(322 , 593);
+//
+//        style.font = game.font ;style.up = new TextureRegionDrawable(new Texture("area empty.png"));
+//        TextButton begin7 = new TextButton("", style);
+//        begin7.setPosition(274 , 655);
+//
+//        style.font = game.font ;style.up = new TextureRegionDrawable(new Texture("area empty.png"));
+//        TextButton begi8n = new TextButton("", style);
+//        begi8n.setPosition(381 , 657);
+//
+//        style.font = game.font ;style.up = new TextureRegionDrawable(new Texture("area empty.png"));
+//        TextButton begin9 = new TextButton("", style);
+//        begin9.setPosition(536 , 705);
+//
+//        style.font = game.font ;style.up = new TextureRegionDrawable(new Texture("area empty.png"));
+//        TextButton begin10 = new TextButton("", style);
+//        begin10.setPosition(858 , 696);
+//
+//        style.font = game.font ; style.up = new TextureRegionDrawable(new Texture("area empty.png"));
+//        TextButton begin11 = new TextButton("", style);
+//        begin11.setPosition(994 , 659);
+//
+//        style.font = game.font ;style.up = new TextureRegionDrawable(new Texture("area empty.png"));
+//        TextButton begin12 = new TextButton("", style);
+//        begin12.setPosition(1114 , 622);
+//
+//        style.font = game.font ;style.up = new TextureRegionDrawable(new Texture("area empty.png"));
+//        TextButton begin13 = new TextButton("", style);
+//        begin13.setPosition(1269 , 543);
+//
+//        style.font = game.font ;style.up = new TextureRegionDrawable(new Texture("area empty.png"));
+//        TextButton begin14= new TextButton("", style);
+//        begin14.setPosition(1384 , 500);
+//
+//        style.font = game.font ;style.up = new TextureRegionDrawable(new Texture("area empty.png"));
+//        TextButton begin15 = new TextButton("", style);
+//        begin15.setPosition(576 , 343);
+//
+//        style.font = game.font ; style.up = new TextureRegionDrawable(new Texture("area empty.png"));
+//        TextButton begin16 = new TextButton("", style);
+//        begin16.setPosition(666 , 403);
+//
+//        style.font = game.font ;style.up = new TextureRegionDrawable(new Texture("area empty.png"));
+//        TextButton begin17 = new TextButton("", style);
+//        begin17.setPosition(770 , 378);
+//
+//
+//        begin.addListener(new ClickListener() {
+//            @Override
+//            public void clicked(InputEvent event, float x, float y) {
+//                game.setScreen(new BattleScreen(game));
+//            }
+//        });
 
         stage = new Stage();
+        stage1 = new Stage();
 
         bigmapBackground = new BaseActor(new Texture("bigmap1.PNG"), 0,0);
-        bigmapBackground.setSize(1582, 1136);
+        bigmapBackground.setSize(1582, 960);
+        event = new BaseActor(new Texture("event.png"), 0,0);
+        event.setSize(1582, 960);
+        area1 = new Area(new Texture("area empty.png"), 487, 267, stage1, 1 , game);
+        area2 = new Area(new Texture("area empty.png"), 338, 313, stage1, 1 , game);
+        area3 = new Area(new Texture("area empty.png"), 259, 404, stage1, 1 , game);
+        area4 = new Area(new Texture("area empty.png"), 332, 473, stage1, 1 , game);
+        area5 = new Area(new Texture("area empty.png"), 373, 534, stage1, 1 ,game);
+        area6 = new Area(new Texture("area empty.png"), 322, 593, stage1, 1 , game);
+        area7 = new Area(new Texture("area empty.png"), 274, 655, stage1, 1 , game);
+        area8 = new Area(new Texture("area empty.png"), 381, 657, stage1, 1 , game);
+        area9 = new Area(new Texture("area empty.png"), 536, 705, stage1, 1, game);
+        area10 = new Area(new Texture("area empty.png"), 708, 705, stage1, 1, game);
+        area11 = new Area(new Texture("area empty.png"), 858, 696, stage1, 1, game);
+        area12 = new Area(new Texture("area empty.png"), 994, 659, stage1, 1, game);
+        area13 = new Area(new Texture("area empty.png"), 1114, 622, stage1, 1, game);
+        area14 = new Area(new Texture("area empty.png"), 1269, 343, stage1, 1, game);
+        area15 = new Area(new Texture("area empty.png"), 1384, 500, stage1, 1, game);
+        area16 = new Area(new Texture("area empty.png"), 576, 343, stage1, 1, game);
+        area17 = new Area(new Texture("area empty.png"), 666, 403, stage1, 1, game);
+        area18 = new Area(new Texture("area empty.png"), 770, 378, stage1, 1, game);
         stage.addActor(bigmapBackground);
+        stage.addActor(event);
 
-        stage.addActor(begin);
+//        stage.addActor(begin);
 
         InputMultiplexer multiPlexer;
 
         multiPlexer = new InputMultiplexer();
         multiPlexer.addProcessor(stage);
+        multiPlexer.addProcessor(stage1);
         multiPlexer.addProcessor(new InputAdapter() {
             @Override
             public boolean touchDown(int screenX, int screenY, int pointer, int button) {
@@ -122,10 +216,13 @@ public class BigMapScreen implements Screen {
         if(stage.getCamera().position.y < 960/2) {
             stage.getCamera().position.y = 960/2;
         }
-        if(stage.getCamera().position.y > 1136 - 960/2) {
-            stage.getCamera().position.y = 1136 - 960/2;
+        if(stage.getCamera().position.y > 960 - 960/2) {
+            stage.getCamera().position.y = 960 - 960/2;
         }
 
+        if(Gdx.input.isTouched()) {
+            System.out.println(Gdx.input.getX() + " " + (960 - Gdx.input.getY()));
+        }
 
         stage.act();
         stage.draw();

@@ -29,7 +29,7 @@ public class StartScreen implements Screen {
         style.down = new TextureRegionDrawable(new Texture("playdown.png"));
 
         TextButton start = new TextButton("", style);
-        start.setPosition(Gdx.graphics.getWidth()/2 - start.getWidth()/2, Gdx.graphics.getHeight()/2 - start.getHeight()/2);
+        start.setPosition(Gdx.graphics.getWidth()/2 - start.getWidth()/2, Gdx.graphics.getHeight()/6 - start.getHeight()/2);
 
         start.addListener(new ClickListener() {
             @Override

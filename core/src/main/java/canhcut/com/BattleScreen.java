@@ -84,11 +84,6 @@ public class BattleScreen implements Screen {
         main.addAction(Actions.color(new Color(1,1,1,1), 1));
 
 
-
-
-
-
-
 //        main.addAction(Actions.sequence(
 //            Actions.run(() -> {
 //                    ballBack.texture = new TextureRegion(new Texture("ballBack.png"));

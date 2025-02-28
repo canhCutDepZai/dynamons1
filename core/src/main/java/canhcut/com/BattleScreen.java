@@ -57,9 +57,9 @@ public class BattleScreen implements Screen {
         main.setScale(0);
         enemy = new BaseActor(new Texture("dynamonsfront1.png"), 540, (float) (Gdx.graphics.getHeight()/2.3));
         enemy.setScale(0.5F);
-        skill1 = new Skills(new Texture("fire1.png"), (float) (Gdx.graphics.getWidth()/1.35), (float)(Gdx.graphics.getHeight()/80));
-        skill2 = new Skills(new Texture("fire2.png"), (float)(Gdx.graphics.getWidth()/1.35 - 140), (float)(Gdx.graphics.getHeight()/80));
-        skill3 = new Skills(new Texture("fire3.png"), (float)(Gdx.graphics.getWidth()/1.35 - 284), (float)(Gdx.graphics.getHeight()/80));
+        skill1 = new Skills(new Texture("fire3.png"), (float) (Gdx.graphics.getWidth()/1.35), (float)(Gdx.graphics.getHeight()/80), 1);
+        skill2 = new Skills(new Texture("fire2.png"), (float)(Gdx.graphics.getWidth()/1.35 - 140), (float)(Gdx.graphics.getHeight()/80), 2);
+        skill3 = new Skills(new Texture("fire1.png"), (float)(Gdx.graphics.getWidth()/1.35 - 284), (float)(Gdx.graphics.getHeight()/80), 2);
         ballBack = new BaseActor(new Texture("ballBack.png"), 0, 160);
         ballBack.setSize(64, 64);
         ballBack.setOrigin(ballBack.getWidth()/2, ballBack.getHeight()/2);

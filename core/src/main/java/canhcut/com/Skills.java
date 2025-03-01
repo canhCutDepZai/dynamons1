@@ -22,31 +22,44 @@ public class Skills extends Actor{
         addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                addAction(Actions.sequence(
-                    Actions.repeat(20, Actions.sequence(
-                    Actions.moveBy(- 5, 0, 0.02f),
-                    Actions.moveBy(5, 0, 0.02f)
-                )),
-                Actions.moveBy(0, 50, 1f),
-                    Actions.run(() -> {
-                        if(lv ==1) {
-                            Actions.repeat(10, Actions.sequence(
-                                    Actions.delay(MathUtils.random(0f, 0.5f)),
-                                    Actions.run(() -> {
+                if(lv ==1) {
+                    addAction(Actions.sequence(
+                        Actions.repeat(20, Actions.sequence(
+                            Actions.moveBy(-5, 0, 0.02f),
+                            Actions.moveBy(5, 0, 0.02f)
+                        )),
+                        Actions.moveBy(0, 50, 1f),
+                        Actions.run(()->{
+                            boolean b = BattleScreen.skillActive == true;
+                        }),
+                        Actions.repeat(10, Actions.sequence(
+                                Actions.delay(MathUtils.random(0f, 0.5f)),
+                                Actions.run(() -> {
+                                        if (lv == 1) {
                                             Fire fire = new Fire(new Texture("empty/fire.png"), 0, 0, getStage());
                                         }
-                                    )
+                                    }
                                 )
-                            );
-                        }else if(lv ==2){
-                            Actions.run(() -> {
-                                    Smoke smoke = new Smoke(new Texture("empty/smoke.png"), 0, 0, getStage());
-                                }
-                            );
-                        }
+                            )
+                        ),
+                        Actions.removeActor()
+                    ));
+                } else if(lv ==2) {
+                    addAction(Actions.sequence(
+                        Actions.repeat(20, Actions.sequence(
+                            Actions.moveBy(-5, 0, 0.02f),
+                            Actions.moveBy(5, 0, 0.02f)
+                        )),
+                        Actions.moveBy(0, 50, 1f),
+                        Actions.run(()-> {
+                            if (lv == 2) {
+                                Smoke smoke = new Smoke(new Texture("empty/smoke.png"), 0, 0, getStage());
+                            }
                         }),
-                    Actions.removeActor()
-                ));
+                            Actions.removeActor()
+                    ));
+
+                }
                 addAction(Actions.fadeOut(2f)); // làm mờ
             }
         });

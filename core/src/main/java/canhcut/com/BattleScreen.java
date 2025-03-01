@@ -28,6 +28,8 @@ public class BattleScreen implements Screen {
 
     BaseActor ballBack;
 
+    static Boolean skillActive = false;
+
     BattleScreen(Master _game){
         this.game = _game;
     }

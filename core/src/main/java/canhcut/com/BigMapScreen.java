@@ -40,28 +40,27 @@ public class BigMapScreen implements Screen {
 
         bigmapBackground = new BaseActor(new Texture("bigmap1.PNG"), 0,0);
         bigmapBackground.setSize(1582, 960);
-        event = new BaseActor(new Texture("event.png"), 0,0);
-        event.setSize(1582, 960);
-        area1 = new Area(new Texture("area empty.png"), 487, 267, stage1, 1 , game);
-        area2 = new Area(new Texture("area empty.png"), 338, 313, stage1, 1 , game);
-        area3 = new Area(new Texture("area empty.png"), 259, 404, stage1, 1 , game);
-        area4 = new Area(new Texture("area empty.png"), 332, 473, stage1, 1 , game);
-        area5 = new Area(new Texture("area empty.png"), 373, 534, stage1, 1 ,game);
-        area6 = new Area(new Texture("area empty.png"), 322, 593, stage1, 1 , game);
-        area7 = new Area(new Texture("area empty.png"), 274, 655, stage1, 1 , game);
-        area8 = new Area(new Texture("area empty.png"), 381, 657, stage1, 1 , game);
-        area9 = new Area(new Texture("area empty.png"), 536, 705, stage1, 1, game);
-        area10 = new Area(new Texture("area empty.png"), 708, 705, stage1, 1, game);
-        area11 = new Area(new Texture("area empty.png"), 858, 696, stage1, 1, game);
-        area12 = new Area(new Texture("area empty.png"), 994, 659, stage1, 1, game);
-        area13 = new Area(new Texture("area empty.png"), 1114, 622, stage1, 1, game);
-        area14 = new Area(new Texture("area empty.png"), 1269, 343, stage1, 1, game);
-        area15 = new Area(new Texture("area empty.png"), 1384, 500, stage1, 1, game);
-        area16 = new Area(new Texture("area empty.png"), 576, 343, stage1, 1, game);
-        area17 = new Area(new Texture("area empty.png"), 666, 403, stage1, 1, game);
-        area18 = new Area(new Texture("area empty.png"), 770, 378, stage1, 1, game);
         stage.addActor(bigmapBackground);
-        stage.addActor(event);
+
+        area1 = new Area(new Texture("elip.png"), 487, 267, stage1, 1 , game);
+        area2 = new Area(new Texture("elip.png"), 338, 313, stage1, 1 , game);
+        area3 = new Area(new Texture("elip.png"), 259, 404, stage1, 1 , game);
+        area4 = new Area(new Texture("elip.png"), 332, 473, stage1, 1 , game);
+        area5 = new Area(new Texture("elip.png"), 373, 534, stage1, 1 ,game);
+        area6 = new Area(new Texture("elip.png"), 322, 593, stage1, 1 , game);
+        area7 = new Area(new Texture("elip.png"), 274, 655, stage1, 1 , game);
+        area8 = new Area(new Texture("elip.png"), 381, 657, stage1, 1 , game);
+        area9 = new Area(new Texture("elip.png"), 536, 705, stage1, 1, game);
+        area10 = new Area(new Texture("elip.png"), 708, 705, stage1, 1, game);
+        area11 = new Area(new Texture("elip.png"), 858, 696, stage1, 1, game);
+        area12 = new Area(new Texture("elip.png"), 994, 659, stage1, 1, game);
+        area13 = new Area(new Texture("elip.png"), 1114, 622, stage1, 1, game);
+        area14 = new Area(new Texture("elip.png"), 1269, 343, stage1, 1, game);
+        area15 = new Area(new Texture("elip.png"), 1384, 500, stage1, 1, game);
+        area16 = new Area(new Texture("elip.png"), 576, 343, stage1, 1, game);
+        area17 = new Area(new Texture("elip.png"), 666, 403, stage1, 1, game);
+        area18 = new Area(new Texture("elip.png"), 770, 378, stage1, 1, game);
+
 
 //        stage.addActor(begin);
 
@@ -89,6 +88,7 @@ public class BigMapScreen implements Screen {
                     float newY = stage.getCamera().position.y + deltaY;
 
                     stage.getCamera().position.set(newX, newY, 0);
+                    stage1.getCamera().position.set(newX, newY, 0);
 
                     lastTouchX = screenX;
                     lastTouchY = screenY;
@@ -141,12 +141,21 @@ public class BigMapScreen implements Screen {
             stage.getCamera().position.y = 960 - 960/2;
         }
 
+        if(stage1.getCamera().position.y < 960/2) {
+            stage1.getCamera().position.y = 960/2;
+        }
+        if(stage1.getCamera().position.y > 960 - 960/2) {
+            stage1.getCamera().position.y = 960 - 960/2;
+        }
+
         if(Gdx.input.isTouched()) {
             System.out.println(Gdx.input.getX() + " " + (960 - Gdx.input.getY()));
         }
 
         stage.act();
         stage.draw();
+        stage1.act();
+        stage1.draw();
 
     }
 

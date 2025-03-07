@@ -13,62 +13,75 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 public class Skills extends Actor{
     TextureRegion texture;
+    float startX;
+    float startY;
+    int lv;
+    Texture texture1;
 
-    Skills(Texture texture, float x, float y, int lv){
+    Skills(Texture texture, float x, float y, int lv) {
         this.texture = new TextureRegion(texture);
-        setPosition(x, y);
-        setSize(128, 128);
+        setSize(96, 96);
+        setPosition(x, y - getHeight());
+        startX = x;
+        startY = y;
+        this.lv = lv;
+        texture1 = texture;
 
-        addListener(new ClickListener(){
+        setColor(1,1,1,0f);
+        addAction(Actions.moveBy(0, getHeight(), 1f));
+        addAction(Actions.fadeIn(2));
+
+        addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                if(lv ==1) {
+                if (lv == 1) {
                     addAction(Actions.sequence(
                         Actions.repeat(20, Actions.sequence(
                             Actions.moveBy(-5, 0, 0.02f),
                             Actions.moveBy(5, 0, 0.02f)
                         )),
                         Actions.moveBy(0, 50, 1f),
-                        Actions.run(()->{
-                            boolean b = BattleScreen.skillActive == true;
-                        }),
                         Actions.repeat(10, Actions.sequence(
                                 Actions.delay(MathUtils.random(0f, 0.5f)),
                                 Actions.run(() -> {
-                                        if (lv == 1) {
-                                            Fire fire = new Fire(new Texture("empty/fire.png"), 0, 0, getStage());
-                                        }
+                                        Fire fire = new Fire(new Texture("empty/fire.png"), 0, 0, getStage());
                                     }
                                 )
                             )
-                        ),
-                        Actions.removeActor()
+                        )
                     ));
-                } else if(lv ==2) {
+                } else if (lv == 2) {
                     addAction(Actions.sequence(
                         Actions.repeat(20, Actions.sequence(
                             Actions.moveBy(-5, 0, 0.02f),
                             Actions.moveBy(5, 0, 0.02f)
                         )),
                         Actions.moveBy(0, 50, 1f),
-                        Actions.run(()-> {
-                            if (lv == 2) {
-                                Smoke smoke = new Smoke(new Texture("empty/smoke.png"), 0, 0, getStage());
-                            }
-                        }),
-                            Actions.removeActor()
+                        Actions.run(() -> {
+                            Smoke smoke = new Smoke(new Texture("empty/smoke.png"), 0, 0, getStage());
+                        })
+                    ));
+                }
+
+                addAction(Actions.sequence(Actions.fadeOut(3f),
+                        Actions.removeActor()
                     ));
 
-                }
-                addAction(Actions.fadeOut(2f)); // làm mờ
+                addAction(Actions.sequence(
+                        Actions.delay(2f),
+                        Actions.run(() -> {
+                            getStage().addActor(new Skills(texture1, startX, startY, lv));
+                        })
+                    )
+                );
             }
         });
     }
 
     @Override
-    public void draw(Batch batch, float parentAlpha)  {
-        batch.setColor(getColor().r, getColor().g, getColor().b, getColor().a*parentAlpha);
+    public void draw(Batch batch, float parentAlpha) {
+        batch.setColor(getColor().r, getColor().g, getColor().b, getColor().a * parentAlpha);
         batch.draw(texture, getX(), getY(), getOriginX(), getOriginY(), getWidth(), getHeight(), getScaleX(), getScaleY(), getRotation());
-        batch.setColor(1,1,1,1);
+        batch.setColor(1, 1, 1, 1);
     }
-  }
+}

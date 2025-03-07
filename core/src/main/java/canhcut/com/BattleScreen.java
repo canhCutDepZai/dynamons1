@@ -19,7 +19,7 @@ public class BattleScreen implements Screen {
 
     Master game;
     BaseActor main;
-    BaseActor enemy;
+    BaseActorAnimation enemy;
     Stage stage;
     BaseActor battleBackground;
     Skills skill1;
@@ -27,8 +27,12 @@ public class BattleScreen implements Screen {
     Skills skill3;
 
     BaseActor ballBack;
+    MoreButton moreButton;
+    Shadow mainShadow, enemyShadow;
 
-    static Boolean skillActive = false;
+
+
+//    static Boolean skillActive = false;
 
     BattleScreen(Master _game){
         this.game = _game;
@@ -40,16 +44,16 @@ public class BattleScreen implements Screen {
         style.font = game.font;
         style.up = new TextureRegionDrawable(new Texture("back.png"));
 
-        TextButton back = new TextButton("", style);
-        back.setSize(256, 256);
-        back.setPosition((Gdx.graphics.getWidth()/2 - back.getWidth()/2)/15 - 50, (float) ((Gdx.graphics.getHeight()/2 - back.getHeight()/2)*2 +10));
+//        TextButton back = new TextButton("", style);
+//        back.setSize(256, 256);
+//        back.setPosition((Gdx.graphics.getWidth()/2 - back.getWidth()/2)/15 - 50, (float) ((Gdx.graphics.getHeight()/2 - back.getHeight()/2)*2 +10));
 
-        back.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                game.setScreen(new BigMapScreen(game));
-            }
-        });
+//        back.addListener(new ClickListener() {
+//            @Override
+//            public void clicked(InputEvent event, float x, float y) {
+//                game.setScreen(new BigMapScreen(game));
+//            }
+//        });
 
 
         stage = new Stage();
@@ -57,11 +61,12 @@ public class BattleScreen implements Screen {
         battleBackground.setSize(540, 960);
         main = new BaseActor(new Texture("dynamonsback1.png"), (float) (Gdx.graphics.getWidth()/5.7), (float) (Gdx.graphics.getHeight()/6));
         main.setScale(0);
-        enemy = new BaseActor(new Texture("dynamonsfront1.png"), 540, (float) (Gdx.graphics.getHeight()/2.3));
-        enemy.setScale(0.5F);
-        skill1 = new Skills(new Texture("fire3.png"), (float) (Gdx.graphics.getWidth()/1.35), (float)(Gdx.graphics.getHeight()/80), 1);
-        skill2 = new Skills(new Texture("fire2.png"), (float)(Gdx.graphics.getWidth()/1.35 - 140), (float)(Gdx.graphics.getHeight()/80), 2);
-        skill3 = new Skills(new Texture("fire1.png"), (float)(Gdx.graphics.getWidth()/1.35 - 284), (float)(Gdx.graphics.getHeight()/80), 2);
+        enemy = new BaseActorAnimation(new Texture("charmeleon.png"), 540, (float) (Gdx.graphics.getHeight()/2.3), stage, 5, 18);
+        enemy.setSize(69, 56);
+        float x = Gdx.graphics.getWidth() - 96;
+        skill1 = new Skills(new Texture("fire3.png"), x, (float)(Gdx.graphics.getHeight()/80), 1);
+        skill2 = new Skills(new Texture("fire2.png"), x - 96 -10, (float)(Gdx.graphics.getHeight()/80), 2);
+        skill3 = new Skills(new Texture("fire1.png"), x - 96-20-96, (float)(Gdx.graphics.getHeight()/80), 2);
         ballBack = new BaseActor(new Texture("ballBack.png"), 0, 160);
         ballBack.setSize(64, 64);
         ballBack.setOrigin(ballBack.getWidth()/2, ballBack.getHeight()/2);
@@ -72,9 +77,8 @@ public class BattleScreen implements Screen {
         stage.addActor(skill1);
         stage.addActor(skill2);
         stage.addActor(skill3);
-        stage.addActor(ballBack);
 
-        stage.addActor(back);
+
         Gdx.input.setInputProcessor(stage);
 
         enemy.addAction(Actions.sequence(Actions.moveTo(300, (float) (Gdx.graphics.getHeight()/2.3), 1)));
@@ -84,6 +88,17 @@ public class BattleScreen implements Screen {
         main.setColor(Color.CLEAR);
         main.addAction(Actions.scaleTo(0.6F, 0.6F, 1));
         main.addAction(Actions.color(new Color(1,1,1,1), 1));
+        mainShadow = new Shadow(new Texture("shadow.png"),(float) (Gdx.graphics.getWidth()/5.7)+50, (float) (Gdx.graphics.getHeight()/6)+35, stage);
+        mainShadow.setColor(1,1,1,1.5f);
+        mainShadow.setScale(1, 1.5f);
+        enemyShadow = new Shadow(new Texture("shadow.png"), 300, (float) (Gdx.graphics.getHeight()/2.3), stage);
+        enemyShadow.setColor(1,1,1,1.5f);
+        enemyShadow.setScale(1, 1.5f);
+
+
+
+        moreButton = new MoreButton(new Texture("buttons.png"), 0, 0,stage, 0, game);
+
 
 
 //        main.addAction(Actions.sequence(

@@ -17,7 +17,6 @@ public class Character extends BaseActor {
         this.dame = _dame;
         this.speed = _speed;
         this.exp = _exp;
-        setScale(2);
 
     }
 

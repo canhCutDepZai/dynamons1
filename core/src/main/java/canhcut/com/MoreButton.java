@@ -47,12 +47,12 @@ public class MoreButton extends BaseActor{
                         if(back != null){
                             s.addActor(back);
                         }else{
-                            back = new MoreButton(texture, x + 183+61, 0, s,  1, game);
+                            back = new MoreButton(texture, x + 300+61, 100, s,  1, game);
                         }
                         if(escape != null){
                             s.addActor(escape);
                         }else {
-                            escape = new MoreButton(texture, x + 183+61+61, 0, s, 2, game);
+                            escape = new MoreButton(texture, x + 300+61+61, 100, s, 2, game);
                         }
 
                     }else if(type==1){

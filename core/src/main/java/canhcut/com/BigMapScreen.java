@@ -1,6 +1,7 @@
 package canhcut.com;
 
 import com.badlogic.gdx.*;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -15,7 +16,7 @@ public class BigMapScreen implements Screen {
     Master game;
     Stage stage;
     BaseActor bigmapBackground;
-    BaseActor event;
+    Music music;
     Area area1, area2, area3, area4, area5, area6, area7, area8, area9, area10, area11, area12, area13, area14, area15, area16, area17, area18;
 
     BigMapScreen(Master _game) {
@@ -38,8 +39,13 @@ public class BigMapScreen implements Screen {
         stage = new Stage();
         stage1 = new Stage();
 
-        bigmapBackground = new BaseActor(new Texture("bigmap1.PNG"), 0,0);
-        bigmapBackground.setSize(1582, 960);
+        music = Gdx.audio.newMusic(Gdx.files.internal("02 Title Screen.mp3"));
+        music.setVolume(.5f);
+        music.setLooping(true);
+        music.play();
+
+        bigmapBackground = new BaseActor(new Texture("bigMap.jpg"), 0,0);
+        bigmapBackground.setSize(2205, 735);
         stage.addActor(bigmapBackground);
 
         area1 = new Area(new Texture("elip.png"), 487, 267, stage1, 1 , game);
@@ -128,17 +134,17 @@ public class BigMapScreen implements Screen {
 
         }
 
-        if(stage.getCamera().position.x < 540/2) {
-            stage.getCamera().position.x = 540/2;
+        if(stage.getCamera().position.x < 960/2) {
+            stage.getCamera().position.x = 960/2;
         }
-        if(stage.getCamera().position.x > 1582 - 540/2) {
-            stage.getCamera().position.x = 1582 - 540/2;
+        if(stage.getCamera().position.x > 2205- 960/2) {
+            stage.getCamera().position.x = 2205 - 960/2;
         }
-        if(stage.getCamera().position.y < 960/2) {
-            stage.getCamera().position.y = 960/2;
+        if(stage.getCamera().position.y < 540/2) {
+            stage.getCamera().position.y = 540/2;
         }
-        if(stage.getCamera().position.y > 960 - 960/2) {
-            stage.getCamera().position.y = 960 - 960/2;
+        if(stage.getCamera().position.y > 735 - 540/2) {
+            stage.getCamera().position.y = 735 - 540/2;
         }
 
         if(stage1.getCamera().position.y < 960/2) {
@@ -149,7 +155,7 @@ public class BigMapScreen implements Screen {
         }
 
         if(Gdx.input.isTouched()) {
-            System.out.println(Gdx.input.getX() + " " + (960 - Gdx.input.getY()));
+            System.out.println(Gdx.input.getX() + " " + (540 - Gdx.input.getY()));
         }
 
         stage.act();
@@ -176,6 +182,7 @@ public class BigMapScreen implements Screen {
 
     @Override
     public void hide() {
+        music.stop();
 
     }
 

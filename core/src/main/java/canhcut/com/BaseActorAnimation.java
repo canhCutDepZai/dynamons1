@@ -19,7 +19,7 @@ public class BaseActorAnimation extends Actor {
 
     BaseActorAnimation(Texture texture, float x, float y, Stage s, int cols, int rows) {
         setPosition(x, y);
-        setSize(texture.getWidth(), texture.getHeight());
+        setSize(3*texture.getWidth()/cols, 3*texture.getHeight()/rows);
         TextureRegion[][] frameBuff = TextureRegion.split(texture, texture.getWidth() / cols, texture.getHeight() / rows);
 
         TextureRegion[] frames = new TextureRegion[cols * rows - 1];

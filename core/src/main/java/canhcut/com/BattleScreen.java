@@ -3,6 +3,7 @@ package canhcut.com;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -18,13 +19,14 @@ import com.badlogic.gdx.utils.ScreenUtils;
 public class BattleScreen implements Screen {
 
     Master game;
-    BaseActor main;
+    BaseActorAnimation main;
     BaseActorAnimation enemy;
     Stage stage;
     BaseActor battleBackground;
     Skills skill1;
     Skills skill2;
     Skills skill3;
+    Music battleMusic;
 
     BaseActor ballBack;
     MoreButton moreButton;
@@ -44,6 +46,11 @@ public class BattleScreen implements Screen {
         style.font = game.font;
         style.up = new TextureRegionDrawable(new Texture("back.png"));
 
+        battleMusic = Gdx.audio.newMusic(Gdx.files.internal("09 Battle! Pokemon Trainer.mp3"));
+        battleMusic.setLooping(true);
+        battleMusic.setVolume(.5f);
+        battleMusic.play();
+
 //        TextButton back = new TextButton("", style);
 //        back.setSize(256, 256);
 //        back.setPosition((Gdx.graphics.getWidth()/2 - back.getWidth()/2)/15 - 50, (float) ((Gdx.graphics.getHeight()/2 - back.getHeight()/2)*2 +10));
@@ -57,12 +64,10 @@ public class BattleScreen implements Screen {
 
 
         stage = new Stage();
-        battleBackground = new BaseActor(new Texture("background1/background1.1.png"), 0, 0);
-        battleBackground.setSize(540, 960);
-        main = new BaseActor(new Texture("dynamonsback1.png"), (float) (Gdx.graphics.getWidth()/5.7), (float) (Gdx.graphics.getHeight()/6));
-        main.setScale(0);
-        enemy = new BaseActorAnimation(new Texture("charmeleon.png"), 540, (float) (Gdx.graphics.getHeight()/2.3), stage, 5, 18);
-        enemy.setSize(69, 56);
+        battleBackground = new BaseActor(new Texture("battleScreen.jpg"), 0, 0);
+        battleBackground.setSize(960, 540);
+        main = new BaseActorAnimation(new Texture("mewtwo.png"),60, 32, stage, 5, 25);
+        enemy = new BaseActorAnimation(new Texture("charmeleon.png"), 680, 270, stage, 5, 18);
         float x = Gdx.graphics.getWidth() - 96;
         skill1 = new Skills(new Texture("fire3.png"), x, (float)(Gdx.graphics.getHeight()/80), 1);
         skill2 = new Skills(new Texture("fire2.png"), x - 96 -10, (float)(Gdx.graphics.getHeight()/80), 2);
@@ -81,14 +86,14 @@ public class BattleScreen implements Screen {
 
         Gdx.input.setInputProcessor(stage);
 
-        enemy.addAction(Actions.sequence(Actions.moveTo(300, (float) (Gdx.graphics.getHeight()/2.3), 1)));
+//        enemy.addAction(Actions.sequence(Actions.moveTo(960-254, 64*4, 1)));
         ballBack.addAction(Actions.moveTo(95, 230, 0.5F));
         ballBack.addAction(Actions.rotateBy(-360, 0.5F));
         ballBack.addAction(Actions.color(new Color(1,1,1,0), 1));
-        main.setColor(Color.CLEAR);
-        main.addAction(Actions.scaleTo(0.6F, 0.6F, 1));
-        main.addAction(Actions.color(new Color(1,1,1,1), 1));
-        mainShadow = new Shadow(new Texture("shadow.png"),(float) (Gdx.graphics.getWidth()/5.7)+50, (float) (Gdx.graphics.getHeight()/6)+35, stage);
+//        main.addAction(Actions.scaleTo(1F, 1F, 1));
+//        main.addAction(Actions.color(new Color(1,1,1,1), 1));
+//        main.addAction(Actions.moveTo((float) (Gdx.graphics.getWidth()/5.7), (float) (Gdx.graphics.getHeight()/6), 1));
+        mainShadow = new Shadow(new Texture("shadow.png"),(float) (Gdx.graphics.getWidth()/5.7)+50, 280, stage);
         mainShadow.setColor(1,1,1,1.5f);
         mainShadow.setScale(1, 1.5f);
         enemyShadow = new Shadow(new Texture("shadow.png"), 300, (float) (Gdx.graphics.getHeight()/2.3), stage);
@@ -143,6 +148,7 @@ public class BattleScreen implements Screen {
 
     @Override
     public void hide() {
+        battleMusic.stop();
 
     }
 

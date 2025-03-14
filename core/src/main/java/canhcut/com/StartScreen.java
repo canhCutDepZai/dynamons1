@@ -3,6 +3,7 @@ package canhcut.com;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -14,6 +15,7 @@ public class StartScreen implements Screen {
     Master game;
     BaseActor startBackground;
     Stage stage;
+    Music openTheme;
 
     StartScreen(Master _game) {
 
@@ -27,6 +29,11 @@ public class StartScreen implements Screen {
         style.font = game.font;
         style.up = new TextureRegionDrawable(new Texture("play.png"));
         style.down = new TextureRegionDrawable(new Texture("playdown.png"));
+
+        openTheme = Gdx.audio.newMusic(Gdx.files.internal("01 Opening.mp3"));
+        openTheme.setLooping(true);
+        openTheme.setVolume(.5f);
+        openTheme.play();
 
         TextButton start = new TextButton("", style);
         start.setPosition(Gdx.graphics.getWidth()/2 - start.getWidth()/2, Gdx.graphics.getHeight()/6 - start.getHeight()/2);
@@ -72,6 +79,7 @@ public class StartScreen implements Screen {
 
     @Override
     public void hide() {
+        openTheme.stop();
 
     }
 

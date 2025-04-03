@@ -1,65 +1,52 @@
 package canhcut.com;
 
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.utils.ScreenUtils;
 
-public class StartScreen implements Screen {
+public class PokedexScreen implements Screen {
     Master game;
-    BaseActor startBackground;
     Stage stage;
-    Music openTheme;
 
-    StartScreen(Master _game) {
-
+    PokedexScreen(Master _game){
         this.game = _game;
+        stage = new Stage();
+
     }
 
     @Override
     public void show() {
-
+        Gdx.input.setInputProcessor(stage);
         TextButton.TextButtonStyle style = new TextButton.TextButtonStyle();
         style.font = game.font;
-        style.up = new TextureRegionDrawable(new Texture("play.png"));
-        style.down = new TextureRegionDrawable(new Texture("playdown.png"));
+        style.up = new TextureRegionDrawable(new Texture("back.png"));
 
-        openTheme = Gdx.audio.newMusic(Gdx.files.internal("01 Opening.mp3"));
-        openTheme.setLooping(true);
-        openTheme.setVolume(.5f);
-        openTheme.play();
-
-        TextButton start = new TextButton("", style);
-        start.setPosition(Gdx.graphics.getWidth()/2 - start.getWidth()/2, Gdx.graphics.getHeight()/6 - start.getHeight()/2);
-
-        start.addListener(new ClickListener() {
+        TextButton back = new TextButton("", style);
+        back.setPosition(200, 200);
+        back.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 game.setScreen(new PokemonsDisplay(game));
             }
         });
-
-        stage = new Stage();
-
-        startBackground = new BaseActor(new Texture("startScreen.png"), 0, 0);
-        startBackground.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        stage.addActor(startBackground);
-
-        stage.addActor(start);
-        Gdx.input.setInputProcessor(stage);
-
+        stage.addActor(back);
     }
 
     @Override
     public void render(float v) {
+        ScreenUtils.clear(0,0,0,0);
+
         stage.act();
         stage.draw();
+
     }
 
     @Override
@@ -79,7 +66,6 @@ public class StartScreen implements Screen {
 
     @Override
     public void hide() {
-        openTheme.stop();
 
     }
 

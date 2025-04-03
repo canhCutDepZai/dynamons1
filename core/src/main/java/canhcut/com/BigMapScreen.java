@@ -44,25 +44,25 @@ public class BigMapScreen implements Screen {
         music.setLooping(true);
         music.play();
 
-        bigmapBackground = new BaseActor(new Texture("bigMap.jpg"), 0,0);
-        bigmapBackground.setSize(2205, 735);
+        bigmapBackground = new BaseActor(new Texture("bigmap.png"), 0,0);
+        bigmapBackground.setSize(1080, 540);
         stage.addActor(bigmapBackground);
 
-        area1 = new Area(new Texture("elip.png"), 487, 267, stage1, 1 , game);
-        area2 = new Area(new Texture("elip.png"), 338, 313, stage1, 1 , game);
-        area3 = new Area(new Texture("elip.png"), 259, 404, stage1, 1 , game);
-        area4 = new Area(new Texture("elip.png"), 332, 473, stage1, 1 , game);
-        area5 = new Area(new Texture("elip.png"), 373, 534, stage1, 1 ,game);
+        area1 = new Area(new Texture("elip.png"), 64, 254, stage1, 1 , game);
+        area2 = new Area(new Texture("elip.png"), 128, 254+64, stage1, 1 , game);
+        area3 = new Area(new Texture("elip.png"), 254, 254+64, stage1, 1 , game);
+        area4 = new Area(new Texture("elip.png"), 254, 100, stage1, 1 , game);
+        area5 = new Area(new Texture("elip.png"), 30, 200, stage1, 1 ,game);
         area6 = new Area(new Texture("elip.png"), 322, 593, stage1, 1 , game);
         area7 = new Area(new Texture("elip.png"), 274, 655, stage1, 1 , game);
         area8 = new Area(new Texture("elip.png"), 381, 657, stage1, 1 , game);
         area9 = new Area(new Texture("elip.png"), 536, 705, stage1, 1, game);
         area10 = new Area(new Texture("elip.png"), 708, 705, stage1, 1, game);
-        area11 = new Area(new Texture("elip.png"), 858, 696, stage1, 1, game);
+        area11 = new Area(new Texture("elip.png"), 858, 200, stage1, 1, game);
         area12 = new Area(new Texture("elip.png"), 994, 659, stage1, 1, game);
-        area13 = new Area(new Texture("elip.png"), 1114, 622, stage1, 1, game);
-        area14 = new Area(new Texture("elip.png"), 1269, 343, stage1, 1, game);
-        area15 = new Area(new Texture("elip.png"), 1384, 500, stage1, 1, game);
+        area13 = new Area(new Texture("elip.png"), 1000, 622, stage1, 1, game);
+        area14 = new Area(new Texture("elip.png"), 1020, 343, stage1, 1, game);
+        area15 = new Area(new Texture("elip.png"), 956, 500, stage1, 1, game);
         area16 = new Area(new Texture("elip.png"), 576, 343, stage1, 1, game);
         area17 = new Area(new Texture("elip.png"), 666, 403, stage1, 1, game);
         area18 = new Area(new Texture("elip.png"), 770, 378, stage1, 1, game);
@@ -137,14 +137,14 @@ public class BigMapScreen implements Screen {
         if(stage.getCamera().position.x < 960/2) {
             stage.getCamera().position.x = 960/2;
         }
-        if(stage.getCamera().position.x > 2205- 960/2) {
-            stage.getCamera().position.x = 2205 - 960/2;
+        if(stage.getCamera().position.x > 1080- 960/2) {
+            stage.getCamera().position.x = 1080 - 960/2;
         }
         if(stage.getCamera().position.y < 540/2) {
             stage.getCamera().position.y = 540/2;
         }
-        if(stage.getCamera().position.y > 735 - 540/2) {
-            stage.getCamera().position.y = 735 - 540/2;
+        if(stage.getCamera().position.y > 540 - 540/2) {
+            stage.getCamera().position.y = 540 - 540/2;
         }
 
         if(stage1.getCamera().position.y < 960/2) {

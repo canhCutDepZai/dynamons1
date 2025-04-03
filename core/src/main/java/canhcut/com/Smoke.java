@@ -8,7 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 public class Smoke extends BaseActor{
     Smoke(Texture texture, float x, float y, Stage s) {
         super(texture, x, y);
-        setPosition(370, 540);
+        setPosition(680, 270);
         setSize(texture.getWidth(), texture.getHeight());
         s.addActor(this);
 

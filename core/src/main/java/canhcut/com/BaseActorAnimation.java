@@ -14,7 +14,7 @@ import java.util.Objects;
 
 public class BaseActorAnimation extends Actor {
     Animation<TextureRegion> animation;
-
+    TextureRegion currentFrame;
     float time;
 
     BaseActorAnimation(Texture texture, float x, float y, Stage s, int cols, int rows) {
@@ -38,18 +38,18 @@ public class BaseActorAnimation extends Actor {
 
         time = 0;
 
-      //  s.addActor(this);
+        s.addActor(this);
     }
 
     @Override
     public void act(float delta) {
         super.act(delta);
         time += delta;
+        currentFrame = animation.getKeyFrame(time);
     }
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
-        TextureRegion currentFrame = animation.getKeyFrame(time);
         batch.draw(currentFrame, getX(), getY(), getOriginX(), getOriginY(), getWidth(), getHeight(), getScaleX(), getScaleY(), getRotation());
     }
 }

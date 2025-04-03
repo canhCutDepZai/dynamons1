@@ -25,7 +25,7 @@ public class Master extends Game {
         FreeTypeFontGenerator fontGenerator = new FreeTypeFontGenerator(Gdx.files.internal("Lonely Cake.ttf"));
         FreeTypeFontGenerator.FreeTypeFontParameter fontParameters = new FreeTypeFontGenerator.FreeTypeFontParameter();
         fontParameters.size = 48;
-        fontParameters.color = Color.BLACK;
+        fontParameters.color = Color.WHITE;
         font = fontGenerator.generateFont(fontParameters);
         fontGenerator.dispose();
 

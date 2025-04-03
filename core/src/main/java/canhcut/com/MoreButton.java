@@ -47,12 +47,18 @@ public class MoreButton extends BaseActor{
                         if(back != null){
                             s.addActor(back);
                         }else{
-                            back = new MoreButton(texture, x + 300+61, 100, s,  1, game);
+                            back = new MoreButton(texture, 0, 400, s,  1, game);
                         }
                         if(escape != null){
                             s.addActor(escape);
                         }else {
-                            escape = new MoreButton(texture, x + 300+61+61, 100, s, 2, game);
+                            escape = new MoreButton(texture, 0, 400+61, s, 2, game);
+                        }
+
+                        for(Character c : BattleScreen.characters){
+                            if(c.status.equals(Status.TAKE)){
+                                s.addActor(c);
+                            }
                         }
 
                     }else if(type==1){
@@ -61,6 +67,11 @@ public class MoreButton extends BaseActor{
                         back.remove();
                         escape.remove();
                         bgAlpha.remove();
+                        for(Character c : BattleScreen.characters){
+                            if(!c.status.equals(Status.ATTACK)){
+                                c.remove();
+                            }
+                        }
                     }
                     else if(type==2){
                         isBackClicked = false;

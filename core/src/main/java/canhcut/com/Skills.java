@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
@@ -34,23 +35,29 @@ public class Skills extends Actor{
         addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                if (lv == 1) {
-                    addAction(Actions.sequence(
-                        Actions.repeat(20, Actions.sequence(
-                            Actions.moveBy(-5, 0, 0.02f),
-                            Actions.moveBy(5, 0, 0.02f)
-                        )),
-                        Actions.moveBy(0, 50, 1f),
-                        Actions.repeat(10, Actions.sequence(
-                                Actions.delay(MathUtils.random(0f, 0.5f)),
-                                Actions.run(() -> {
-                                        Fire fire = new Fire(new Texture("empty/fire.png"), 0, 0, getStage());
-                                    }
-                                )
-                            )
-                        )
-                    ));
-                } else if (lv == 2) {
+//                if (lv == 1) {
+//                    if(isActive) {
+//                        addAction(Actions.sequence(
+//                            Actions.repeat(20, Actions.sequence(
+//                                Actions.moveBy(-5, 0, 0.02f),
+//                                Actions.moveBy(5, 0, 0.02f)
+//                            )),
+//                            Actions.moveBy(0, 50, 1f),
+//
+//                            Actions.repeat(10, Actions.sequence(
+//                                    Actions.delay(MathUtils.random(0f, 0.5f)),
+//                                    Actions.run(() -> {
+//                                            Fire fire = new Fire(new Texture("empty/fire.png"), 0, 0, getStage());
+//                                        }
+//                                    )
+//                                )
+//                            ),
+//                            Actions.run(() -> {isActive = false;})
+//                        ));
+//                    }
+//                    System.out.println("chưa đủ nộ!!");
+//                } else
+                if (lv == 2) {
                     addAction(Actions.sequence(
                         Actions.repeat(20, Actions.sequence(
                             Actions.moveBy(-5, 0, 0.02f),
@@ -59,7 +66,8 @@ public class Skills extends Actor{
                         Actions.moveBy(0, 50, 1f),
                         Actions.run(() -> {
                             Smoke smoke = new Smoke(new Texture("empty/smoke.png"), 0, 0, getStage());
-                        })
+                        }
+                        )
                     ));
                 }
 

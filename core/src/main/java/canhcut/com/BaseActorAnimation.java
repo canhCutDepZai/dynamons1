@@ -19,14 +19,14 @@ public class BaseActorAnimation extends Actor {
 
     BaseActorAnimation(Texture texture, float x, float y, Stage s, int cols, int rows) {
         setPosition(x, y);
-        setSize(3*texture.getWidth()/cols, 3*texture.getHeight()/rows);
+        setSize(3 * texture.getWidth() / cols, 3 * texture.getHeight() / rows);
         TextureRegion[][] frameBuff = TextureRegion.split(texture, texture.getWidth() / cols, texture.getHeight() / rows);
 
         TextureRegion[] frames = new TextureRegion[cols * rows - 1];
         int index = 0;
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
-                if(!((i == (rows-1)) && (j == (cols-1)))) {
+                if (!((i == (rows - 1)) && (j == (cols - 1)))) {
                     frames[index++] = frameBuff[i][j];
                 }
             }
@@ -50,6 +50,8 @@ public class BaseActorAnimation extends Actor {
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
+        batch.setColor(getColor().r, getColor().g, getColor().b, getColor().a);
         batch.draw(currentFrame, getX(), getY(), getOriginX(), getOriginY(), getWidth(), getHeight(), getScaleX(), getScaleY(), getRotation());
+        batch.setColor(1, 1, 1, 1);
     }
 }

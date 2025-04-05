@@ -36,7 +36,7 @@ public class BattleScreen implements Screen {
     // danh sach cac pokemon mang di
     public static Array<Character> characterAway = new Array<>();
 
-    BattleScreen(Master _game){
+    BattleScreen(Master _game) {
         this.game = _game;
     }
 
@@ -61,9 +61,9 @@ public class BattleScreen implements Screen {
 
         enemy = new BaseActorAnimation(new Texture("charmeleon.png"), 680, 270, stage, 5, 18);
         float x = Gdx.graphics.getWidth() - 96;
-        skill1 = new Skills(new Texture("fire1.png"), x, (float)(Gdx.graphics.getHeight()/80), 2);
-        skill2 = new Skills(new Texture("fire2.png"), x - 96 -10, (float)(Gdx.graphics.getHeight()/80), 2);
-        ulti= new UltimateSkill(new Texture("fireRain.png"), x - 96-20-96, (float)(Gdx.graphics.getHeight()/80));
+        skill1 = new Skills(new Texture("fire1.png"), x, (float) (Gdx.graphics.getHeight() / 80), 2);
+        skill2 = new Skills(new Texture("fire2.png"), x - 96 - 10, (float) (Gdx.graphics.getHeight() / 80), 2);
+        ulti = new UltimateSkill(new Texture("fireRain.png"), x - 96 - 20 - 96, (float) (Gdx.graphics.getHeight() / 80));
 
         stage.addActor(skill1);
         stage.addActor(skill2);
@@ -73,7 +73,7 @@ public class BattleScreen implements Screen {
 
         Gdx.input.setInputProcessor(stage);
 
-        moreButton = new MoreButton(new Texture("buttons.png"), 0, 0,stage, 0, game);
+        moreButton = new MoreButton(new Texture("buttons.png"), 0, 0, stage, 0, game);
 
     }
 

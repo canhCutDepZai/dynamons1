@@ -26,11 +26,9 @@ public class BigMapScreen implements Screen {
 
     float lastTouchX;
     float lastTouchY;
-    boolean isDragging = false ;
+    boolean isDragging = false;
 
     Stage stage1;
-
-
 
 
     @Override
@@ -44,18 +42,18 @@ public class BigMapScreen implements Screen {
         music.setLooping(true);
         music.play();
 
-        bigmapBackground = new BaseActor(new Texture("bigmap.png"), 0,0);
+        bigmapBackground = new BaseActor(new Texture("bigmap.png"), 0, 0);
         bigmapBackground.setSize(1080, 540);
         stage.addActor(bigmapBackground);
 
-        area1 = new Area(new Texture("elip.png"), 64, 254, stage1, 1 , game);
-        area2 = new Area(new Texture("elip.png"), 128, 254+64, stage1, 1 , game);
-        area3 = new Area(new Texture("elip.png"), 254, 254+64, stage1, 1 , game);
-        area4 = new Area(new Texture("elip.png"), 254, 100, stage1, 1 , game);
-        area5 = new Area(new Texture("elip.png"), 30, 200, stage1, 1 ,game);
-        area6 = new Area(new Texture("elip.png"), 322, 593, stage1, 1 , game);
-        area7 = new Area(new Texture("elip.png"), 274, 655, stage1, 1 , game);
-        area8 = new Area(new Texture("elip.png"), 381, 657, stage1, 1 , game);
+        area1 = new Area(new Texture("elip.png"), 64, 254, stage1, 1, game);
+        area2 = new Area(new Texture("elip.png"), 128, 254 + 64, stage1, 1, game);
+        area3 = new Area(new Texture("elip.png"), 254, 254 + 64, stage1, 1, game);
+        area4 = new Area(new Texture("elip.png"), 254, 100, stage1, 1, game);
+        area5 = new Area(new Texture("elip.png"), 30, 200, stage1, 1, game);
+        area6 = new Area(new Texture("elip.png"), 322, 593, stage1, 1, game);
+        area7 = new Area(new Texture("elip.png"), 274, 655, stage1, 1, game);
+        area8 = new Area(new Texture("elip.png"), 381, 657, stage1, 1, game);
         area9 = new Area(new Texture("elip.png"), 536, 705, stage1, 1, game);
         area10 = new Area(new Texture("elip.png"), 708, 705, stage1, 1, game);
         area11 = new Area(new Texture("elip.png"), 858, 200, stage1, 1, game);
@@ -86,7 +84,7 @@ public class BigMapScreen implements Screen {
 
             @Override
             public boolean touchDragged(int screenX, int screenY, int pointer) {
-                if(isDragging){
+                if (isDragging) {
                     float deltaX = lastTouchX - screenX;
                     float deltaY = screenY - lastTouchY;
 
@@ -117,44 +115,44 @@ public class BigMapScreen implements Screen {
     @Override
     public void render(float v) {
 
-        if(Gdx.input.isKeyPressed(Input.Keys.UP)) {
-            stage.getCamera().position.y += 2;
+//        if(Gdx.input.isKeyPressed(Input.Keys.UP)) {
+//            stage.getCamera().position.y += 2;
+//        }
+//
+//        if(Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
+//            stage.getCamera().position.y -= 2;
+//
+//        }
+//        if(Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+//            stage.getCamera().position.x -= 2;
+//
+//        }
+//        if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+//            stage.getCamera().position.x += 2;
+//
+//        }
+
+        if (stage.getCamera().position.x < 960 / 2) {
+            stage.getCamera().position.x = 960 / 2;
+        }
+        if (stage.getCamera().position.x > 1080 - 960 / 2) {
+            stage.getCamera().position.x = 1080 - 960 / 2;
+        }
+        if (stage.getCamera().position.y < 540 / 2) {
+            stage.getCamera().position.y = 540 / 2;
+        }
+        if (stage.getCamera().position.y > 540 - 540 / 2) {
+            stage.getCamera().position.y = 540 - 540 / 2;
         }
 
-        if(Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
-            stage.getCamera().position.y -= 2;
-
+        if (stage1.getCamera().position.y < 960 / 2) {
+            stage1.getCamera().position.y = 960 / 2;
         }
-        if(Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
-            stage.getCamera().position.x -= 2;
-
-        }
-        if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
-            stage.getCamera().position.x += 2;
-
+        if (stage1.getCamera().position.y > 960 - 960 / 2) {
+            stage1.getCamera().position.y = 960 - 960 / 2;
         }
 
-        if(stage.getCamera().position.x < 960/2) {
-            stage.getCamera().position.x = 960/2;
-        }
-        if(stage.getCamera().position.x > 1080- 960/2) {
-            stage.getCamera().position.x = 1080 - 960/2;
-        }
-        if(stage.getCamera().position.y < 540/2) {
-            stage.getCamera().position.y = 540/2;
-        }
-        if(stage.getCamera().position.y > 540 - 540/2) {
-            stage.getCamera().position.y = 540 - 540/2;
-        }
-
-        if(stage1.getCamera().position.y < 960/2) {
-            stage1.getCamera().position.y = 960/2;
-        }
-        if(stage1.getCamera().position.y > 960 - 960/2) {
-            stage1.getCamera().position.y = 960 - 960/2;
-        }
-
-        if(Gdx.input.isTouched()) {
+        if (Gdx.input.isTouched()) {
             System.out.println(Gdx.input.getX() + " " + (540 - Gdx.input.getY()));
         }
 

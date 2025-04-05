@@ -16,7 +16,7 @@ public class PokedexScreen implements Screen {
     Master game;
     Stage stage;
 
-    PokedexScreen(Master _game){
+    PokedexScreen(Master _game) {
         this.game = _game;
         stage = new Stage();
 
@@ -43,7 +43,7 @@ public class PokedexScreen implements Screen {
 
     @Override
     public void render(float v) {
-        ScreenUtils.clear(0,0,0,0);
+        ScreenUtils.clear(0, 0, 0, 0);
 
         stage.act();
         stage.draw();

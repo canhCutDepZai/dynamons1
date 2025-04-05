@@ -19,7 +19,7 @@ public class BaseActor extends Actor {
     }
 
     @Override
-    public void draw(Batch batch, float parentAlpha)  {
+    public void draw(Batch batch, float parentAlpha) {
         batch.setColor(getColor().r, getColor().g, getColor().b, getColor().a);
         batch.draw(texture, getX(), getY(), getOriginX(), getOriginY(), getWidth(), getHeight(), getScaleX(), getScaleY(), getRotation());
         batch.setColor(1, 1, 1, 1);

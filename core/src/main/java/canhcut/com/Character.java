@@ -29,11 +29,27 @@ public class Character extends BaseActorAnimation {
         addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                if(status.equals(Status.POCKET)){
-                    status = Status.TAKE;
-                    remove();
-                } else if (status.equals(Status.TAKE)) {
-                    status = Status.ATTACK;
+
+                if(status.equals(Status.POCKET) && BattleScreen.characters.contains(Character.this, true)){
+                    int i = BattleScreen.characters.indexOf(Character.this, true);
+                    Character character = BattleScreen.characters.removeIndex(i);
+                    Stage stage = character.getStage();
+                    character.setX(0);
+                    BattleScreen.characterAway.add(character);
+                    if(!BattleScreen.characters.isEmpty()){
+                        PokemonsDisplay.notHide = BattleScreen.characters.get(0);
+                        stage.addActor(PokemonsDisplay.notHide);
+                    }
+                } else if (status.equals(Status.POCKET) && BattleScreen.characterAway.contains(Character.this, true)) {
+                    int i = BattleScreen.characterAway.indexOf(Character.this, true);
+                    Character character = BattleScreen.characterAway.removeIndex(i);
+                    character.remove();
+                    character.setX(480);
+                    BattleScreen.characters.add(character);
+                } else if (status.equals(Status.ATTACK) && BattleScreen.characterAway.contains(Character.this, true)) {
+                    int i = BattleScreen.characterAway.indexOf(Character.this, true);
+                    BattleScreen.characterAway.swap(i, 0); // đổi phần tử ở vị trí i sang vị trí 0
+
                 }
             }
         });
@@ -43,7 +59,7 @@ public class Character extends BaseActorAnimation {
     @Override
     public void act(float delta) {
         super.act(delta);
-        if(status.equals(Status.TAKE)){
+        if(status.equals(Status.ATTACK) || BattleScreen.characterAway.contains(Character.this, true)) {
             if(name.equals(PokemonNames.PIKACHU))
             currentFrame = new TextureRegion(new Texture("avatars/pikachuAvatar.png"));
         }

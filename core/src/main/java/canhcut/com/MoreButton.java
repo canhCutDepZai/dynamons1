@@ -55,10 +55,9 @@ public class MoreButton extends BaseActor{
                             escape = new MoreButton(texture, 0, 400+61, s, 2, game);
                         }
 
-                        for(Character c : BattleScreen.characters){
-                            if(c.status.equals(Status.TAKE)){
-                                s.addActor(c);
-                            }
+                        for(Character c : BattleScreen.characterAway){
+                            s.addActor(c);
+                            c.status = Status.ATTACK;
                         }
 
                     }else if(type==1){

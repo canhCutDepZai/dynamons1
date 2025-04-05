@@ -38,6 +38,7 @@ public class PokedexScreen implements Screen {
             }
         });
         stage.addActor(back);
+        stage.addActor(PokemonsDisplay.notHide);
     }
 
     @Override

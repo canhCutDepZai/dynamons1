@@ -31,7 +31,10 @@ public class BattleScreen implements Screen {
     BaseActor attribute;
     MoreButton moreButton;
 
-    static Array<Character> characters = new Array<>();
+    // danh sach chua cac pokemon o trong kho
+    public static Array<Character> characters = new Array<>();
+    // danh sach cac pokemon mang di
+    public static Array<Character> characterAway = new Array<>();
 
     BattleScreen(Master _game){
         this.game = _game;

@@ -21,7 +21,7 @@ public class PokemonsDisplay implements Screen {
     Stage stage;
     BaseActorAnimation keTrungBay;
     BaseActor displayBackground;
-    float lastX, lastY;
+    float lastX;
     boolean isDragging = false;
 
     static Character notHide;
@@ -188,7 +188,6 @@ public class PokemonsDisplay implements Screen {
         if (Math.abs(deltaX) < 100) {
             int i = characters.indexOf(notHide, true);
             characters.get(i).setPosition(Gdx.graphics.getWidth() / 2 - notHide.getWidth() / 2 - 50, Gdx.graphics.getHeight() / 2 - notHide.getHeight() / 2 + 80);
-            ;
         }
 
         if (notHide != null) {

@@ -71,10 +71,10 @@ public class Character extends BaseActorAnimation {
     @Override
     public void act(float delta) {
         super.act(delta);
-////        if(status.equals(Status.ATTACK) || BattleScreen.characterAway.contains(Character.this, true)) {
-////            if(name.equals(PokemonNames.PIKACHU)){
-////            currentFrame = new TextureRegion(new Texture("avatars/pikachuAvatar.png"));
-//            }
-//        }
+        if(status.equals(Status.ATTACK) || BattleScreen.characterAway.contains(Character.this, true)) {
+            if(name.equals(PokemonNames.PIKACHU)){
+            currentFrame = new TextureRegion(new Texture("avatars/pikachuAvatar.png"));
+            }
+        }
     }
 }

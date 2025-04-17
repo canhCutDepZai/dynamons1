@@ -1,12 +1,12 @@
-package canhcut.com;
+package canhcut.com.skills;
 
+import canhcut.com.characters.BaseActor;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 
-public class Smoke extends BaseActor{
-    Smoke(Texture texture, float x, float y, Stage s) {
+public class Smoke extends BaseActor {
+    public Smoke(Texture texture, float x, float y, Stage s) {
         super(texture, x, y);
         setPosition(680, 270);
         setSize(texture.getWidth(), texture.getHeight());

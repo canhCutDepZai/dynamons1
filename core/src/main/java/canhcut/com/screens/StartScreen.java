@@ -1,6 +1,8 @@
-package canhcut.com;
+package canhcut.com.screens;
 
 
+import canhcut.com.characters.BaseActor;
+import canhcut.com.Master;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
@@ -17,7 +19,7 @@ public class StartScreen implements Screen {
     Stage stage;
     Music openTheme;
 
-    StartScreen(Master _game) {
+    public StartScreen(Master _game) {
 
         this.game = _game;
     }

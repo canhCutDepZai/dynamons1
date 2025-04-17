@@ -1,4 +1,4 @@
-package canhcut.com;
+package canhcut.com.characters;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -8,10 +8,10 @@ import com.badlogic.gdx.scenes.scene2d.actions.MoveToAction;
 import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 
 public class BaseActor extends Actor {
-    TextureRegion texture;
+    public TextureRegion texture;
 
 
-    BaseActor(Texture texture, float x, float y) {
+    public BaseActor(Texture texture, float x, float y) {
         this.texture = new TextureRegion(texture);
         setPosition(x, y);
         setSize(texture.getWidth(), texture.getHeight());

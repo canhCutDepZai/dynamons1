@@ -1,8 +1,5 @@
-package canhcut.com;
+package canhcut.com.characters;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
-import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -10,14 +7,12 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
-import java.util.Objects;
-
 public class BaseActorAnimation extends Actor {
-    Animation<TextureRegion> animation;
+    public Animation<TextureRegion> animation;
     TextureRegion currentFrame;
     float time;
 
-    BaseActorAnimation(Texture texture, float x, float y, Stage s, int cols, int rows) {
+    public BaseActorAnimation(Texture texture, float x, float y, Stage s, int cols, int rows) {
         setPosition(x, y);
         setSize(3 * texture.getWidth() / cols, 3 * texture.getHeight() / rows);
         TextureRegion[][] frameBuff = TextureRegion.split(texture, texture.getWidth() / cols, texture.getHeight() / rows);

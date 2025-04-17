@@ -1,15 +1,12 @@
-package canhcut.com;
+package canhcut.com.screens;
 
+import canhcut.com.Area;
+import canhcut.com.characters.BaseActor;
+import canhcut.com.Master;
 import com.badlogic.gdx.*;
 import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
-import com.badlogic.gdx.utils.ScreenUtils;
 
 
 public class BigMapScreen implements Screen {
@@ -19,7 +16,7 @@ public class BigMapScreen implements Screen {
     Music music;
     Area area1, area2, area3, area4, area5, area6, area7, area8, area9, area10, area11, area12, area13, area14, area15, area16, area17, area18;
 
-    BigMapScreen(Master _game) {
+    public BigMapScreen(Master _game) {
 
         this.game = _game;
     }
@@ -114,23 +111,6 @@ public class BigMapScreen implements Screen {
 
     @Override
     public void render(float v) {
-
-//        if(Gdx.input.isKeyPressed(Input.Keys.UP)) {
-//            stage.getCamera().position.y += 2;
-//        }
-//
-//        if(Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
-//            stage.getCamera().position.y -= 2;
-//
-//        }
-//        if(Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
-//            stage.getCamera().position.x -= 2;
-//
-//        }
-//        if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
-//            stage.getCamera().position.x += 2;
-//
-//        }
 
         if (stage.getCamera().position.x < 960 / 2) {
             stage.getCamera().position.x = 960 / 2;

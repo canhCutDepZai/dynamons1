@@ -1,16 +1,17 @@
 package canhcut.com;
 
-import com.badlogic.gdx.Screen;
+import canhcut.com.characters.BaseActor;
+import canhcut.com.screens.BattleScreen;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
-public class Area extends BaseActor{
+public class Area extends BaseActor {
 
     int level = 1;
     Master game;
-    Area(Texture texture, float x, float y, Stage s, int level, Master game){
+    public Area(Texture texture, float x, float y, Stage s, int level, Master game){
         super(texture, x, y);
 
         this.level = level;

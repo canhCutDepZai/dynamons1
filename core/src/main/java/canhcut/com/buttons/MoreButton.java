@@ -1,12 +1,18 @@
-package canhcut.com;
+package canhcut.com.buttons;
 
+import canhcut.com.BgAlpha;
+import canhcut.com.Master;
+import canhcut.com.Status;
+import canhcut.com.characters.BaseActor;
+import canhcut.com.characters.Character;
+import canhcut.com.screens.BattleScreen;
+import canhcut.com.screens.BigMapScreen;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
-public class MoreButton extends BaseActor{
+public class MoreButton extends BaseActor {
     static boolean isAddedClicked = false;
     static MoreButton back, escape;
     static BgAlpha bgAlpha;
@@ -16,7 +22,7 @@ public class MoreButton extends BaseActor{
 
 
 
-    MoreButton(Texture texture, float x, float y,Stage s, int type, Master game){
+    public MoreButton(Texture texture, float x, float y, Stage s, int type, Master game){
     super(texture,x,y);
     if(type==0){
         this.texture.setRegion(183, 0, 61, 70);
@@ -55,7 +61,7 @@ public class MoreButton extends BaseActor{
                             escape = new MoreButton(texture, 0, 400+61, s, 2, game);
                         }
 
-                        for(Character c : BattleScreen.characterAway){
+                        for(canhcut.com.characters.Character c : BattleScreen.characterAway){
                             s.addActor(c);
                             c.status = Status.ATTACK;
                         }

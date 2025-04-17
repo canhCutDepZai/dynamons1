@@ -1,5 +1,6 @@
 package canhcut.com;
 
+import canhcut.com.screens.StartScreen;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -11,11 +12,9 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 
 /** {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms. */
 public class Master extends Game {
-    OrthographicCamera camera;
-    Texture catImage;
-    Texture treeImage;
-    SpriteBatch batch;
-    BitmapFont font;
+    public OrthographicCamera camera;
+    public SpriteBatch batch;
+    public BitmapFont font;
 
 
     @Override

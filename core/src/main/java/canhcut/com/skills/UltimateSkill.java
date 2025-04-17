@@ -1,6 +1,5 @@
-package canhcut.com;
+package canhcut.com.skills;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -15,7 +14,7 @@ public class UltimateSkill extends Actor {
     boolean isActive = true;
     float startX, startY;
 
-    UltimateSkill(Texture texture, float x, float y) {
+    public UltimateSkill(Texture texture, float x, float y) {
         startX = x;
         startY = y;
         this.texture = new TextureRegion(texture);

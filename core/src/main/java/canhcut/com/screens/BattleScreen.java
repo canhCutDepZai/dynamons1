@@ -1,18 +1,18 @@
-package canhcut.com;
+package canhcut.com.screens;
 
+import canhcut.com.*;
+import canhcut.com.buttons.MoreButton;
+import canhcut.com.characters.Character;
+import canhcut.com.characters.BaseActor;
+import canhcut.com.characters.BaseActorAnimation;
+import canhcut.com.skills.Skills;
+import canhcut.com.skills.UltimateSkill;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.actions.Actions;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ScreenUtils;
 
@@ -36,7 +36,7 @@ public class BattleScreen implements Screen {
     // danh sach cac pokemon mang di
     public static Array<Character> characterAway = new Array<>();
 
-    BattleScreen(Master _game) {
+    public BattleScreen(Master _game) {
         this.game = _game;
     }
 

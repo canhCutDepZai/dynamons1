@@ -1,15 +1,11 @@
-package canhcut.com;
+package canhcut.com.skills;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.MathUtils;
-import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
-import com.badlogic.gdx.scenes.scene2d.actions.RepeatAction;
-import com.badlogic.gdx.scenes.scene2d.actions.RunnableAction;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 public class Skills extends Actor{
@@ -19,7 +15,7 @@ public class Skills extends Actor{
     int lv;
     Texture texture1;
 
-    Skills(Texture texture, float x, float y, int lv) {
+    public Skills(Texture texture, float x, float y, int lv) {
         this.texture = new TextureRegion(texture);
         setSize(96, 96);
         setPosition(x, y - getHeight());

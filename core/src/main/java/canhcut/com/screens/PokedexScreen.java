@@ -1,6 +1,9 @@
 package canhcut.com.screens;
 
 import canhcut.com.Master;
+import canhcut.com.ScreenName;
+import canhcut.com.Status;
+import canhcut.com.characters.Character;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Texture;
@@ -23,6 +26,8 @@ public class PokedexScreen implements Screen {
 
     @Override
     public void show() {
+        game.screenName = ScreenName.POKEDEXSCREEN;
+
         Gdx.input.setInputProcessor(stage);
         TextButton.TextButtonStyle style = new TextButton.TextButtonStyle();
         style.font = game.font;
@@ -33,7 +38,7 @@ public class PokedexScreen implements Screen {
         back.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                game.setScreen(new PokemonsDisplay(game));
+                game.setScreen(game.pokemonsDisplayScreen);
             }
         });
         stage.addActor(back);

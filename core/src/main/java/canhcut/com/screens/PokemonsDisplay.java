@@ -1,5 +1,7 @@
 package canhcut.com.screens;
 
+import canhcut.com.ScreenName;
+import canhcut.com.Status;
 import canhcut.com.characters.BaseActor;
 import canhcut.com.characters.BaseActorAnimation;
 import canhcut.com.characters.Character;
@@ -17,6 +19,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.ScreenUtils;
 
+import static canhcut.com.screens.BattleScreen.characterAway;
 import static canhcut.com.screens.BattleScreen.characters;
 
 public class PokemonsDisplay implements Screen {
@@ -33,8 +36,12 @@ public class PokemonsDisplay implements Screen {
     float deltaX = 0;
     float speed;
 
-    PokemonsDisplay(Master _game) {
+    public PokemonsDisplay(Master _game) {
         this.game = _game;
+    }
+
+    @Override
+    public void show() {
         stage = new Stage();
 
         displayBackground = new BaseActor(new Texture("displayBackground.jpg"), 0, 0);
@@ -45,21 +52,38 @@ public class PokemonsDisplay implements Screen {
         keTrungBay.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         keTrungBay.animation.setFrameDuration(0.3f);
 
-        Character mewtwo = new Character(new Texture("mewtwo.png"), PokemonNames.MEWTWO, stage, 5, 25, Gdx.graphics.getWidth() / 2, 245, 100, 25, 12, 0);
-        characters.add(mewtwo);
-        Character pikachu = new Character(new Texture("pikachu.png"), PokemonNames.PIKACHU, stage, 3, 38, 0, 0245, 50, 12, 10, 0);
-        characters.add(pikachu);
-        Character dragonite = new Character(new Texture("dragonite.png"), PokemonNames.DRAGONITE, stage, 6, 17, 0, 0245, 150, 20, 9, 0);
-        characters.add(dragonite);
+        ScreenName lastScreen = Master.screenName;
+        if(lastScreen.equals(ScreenName.STARTSCREEN)){
+            if(characters.isEmpty()){
+                Character mewtwo = new Character(new Texture("mewtwo/mewtwo_front.png"), PokemonNames.MEWTWO, stage, 1, 125, 0, 245, 100, 25, 12, 0);
+                characters.add(mewtwo);
+                Character pikachu = new Character(new Texture("pikachu/pikachu_front.png"), PokemonNames.PIKACHU, stage, 1, 112, 0, 0245, 50, 12, 10, 0);
+                characters.add(pikachu);
+                Character dragonite = new Character(new Texture("dragonite/dragonite_front.png"), PokemonNames.DRAGONITE, stage, 1, 102, 0, 0245, 150, 20, 9, 0);
+                characters.add(dragonite);
+                Character lapras = new Character(new Texture("lapras/lapras_front.png"), PokemonNames.LAPRAS, stage, 1, 65, 0, 245, 250, 20, 8, 0);
+                characters.add(lapras);
 
+                for (int i = 1; i < characters.size; i++) {
+                    characters.get(i).remove();
+                }
+            }
+        }
+        Master.screenName = ScreenName.POKEMONDISPLAYSCREEN;
 
-        for (int i = 1; i < characters.size; i++) {
-            characters.get(i).remove();
+        if(notHide == null){
+            notHide = characters.get(0);
+            notHide.setPosition(Gdx.graphics.getWidth() / 2 - characters.get(0).getWidth() / 2 - 50, 245);
+            stage.addActor(notHide);
+        } else {
+            stage.addActor(notHide);
         }
 
-        notHide = characters.get(0);
-        notHide.setPosition(Gdx.graphics.getWidth() / 2 - characters.get(0).getWidth() / 2 - 50, 245);
-
+        if(!BattleScreen.characterAway.isEmpty()){
+            for(Character character : BattleScreen.characterAway){
+                stage.addActor(character);
+            }
+        }
 
         TextButton.TextButtonStyle style = new TextButton.TextButtonStyle();
         style.font = game.font;
@@ -69,7 +93,9 @@ public class PokemonsDisplay implements Screen {
         start.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                game.setScreen(new BigMapScreen(game));
+                if(characterAway.size == 3) {
+                    game.setScreen(new BigMapScreen(game));
+                }
             }
         });
 
@@ -78,16 +104,15 @@ public class PokemonsDisplay implements Screen {
         show.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                game.setScreen(new PokedexScreen(game));
+                if(!characters.isEmpty()) {
+                    game.setScreen(new PokedexScreen(game));
+                }
             }
         });
 
         stage.addActor(start);
         stage.addActor(show);
-    }
 
-    @Override
-    public void show() {
         Gdx.input.setInputProcessor(stage);
 
         InputMultiplexer multiPlexer;
@@ -184,6 +209,7 @@ public class PokemonsDisplay implements Screen {
 
     @Override
     public void hide() {
+        stage.clear();
         stage.dispose();
     }
 

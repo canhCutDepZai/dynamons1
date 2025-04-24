@@ -1,6 +1,7 @@
 package canhcut.com.screens;
 
 
+import canhcut.com.ScreenName;
 import canhcut.com.characters.BaseActor;
 import canhcut.com.Master;
 import com.badlogic.gdx.Gdx;
@@ -19,6 +20,8 @@ public class StartScreen implements Screen {
     Stage stage;
     Music openTheme;
 
+
+
     public StartScreen(Master _game) {
 
         this.game = _game;
@@ -26,6 +29,7 @@ public class StartScreen implements Screen {
 
     @Override
     public void show() {
+        game.screenName = ScreenName.STARTSCREEN;
 
         TextButton.TextButtonStyle style = new TextButton.TextButtonStyle();
         style.font = game.font;
@@ -43,7 +47,7 @@ public class StartScreen implements Screen {
         start.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                game.setScreen(new PokemonsDisplay(game));
+                game.setScreen(game.pokemonsDisplayScreen);
             }
         });
 

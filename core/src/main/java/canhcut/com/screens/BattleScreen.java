@@ -27,6 +27,7 @@ public class BattleScreen implements Screen {
     Skills skill2;
     UltimateSkill ulti;
     Music battleMusic;
+    Character attacker;
 
     BaseActor attribute;
     MoreButton moreButton;
@@ -42,6 +43,7 @@ public class BattleScreen implements Screen {
 
     @Override
     public void show() {
+        game.screenName = ScreenName.BATTLESCREEN;
 
         battleMusic = Gdx.audio.newMusic(Gdx.files.internal("09 Battle! Pokemon Trainer.mp3"));
         battleMusic.setLooping(true);
@@ -69,6 +71,12 @@ public class BattleScreen implements Screen {
         stage.addActor(skill2);
         stage.addActor(ulti);
         stage.addActor(attribute);
+
+        attacker = characterAway.get(0);
+        attacker.setPosition(25, 62);
+        attacker.setAnimation(new Texture("mewtwo/mewtwo_back.png"), 1, 125);
+        attacker.avatar.setColor(Color.GRAY);
+        stage.addActor(attacker);
 
 
         Gdx.input.setInputProcessor(stage);

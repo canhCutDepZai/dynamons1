@@ -17,13 +17,11 @@ public class BaseActorAnimation extends Actor {
         setSize(3 * texture.getWidth() / cols, 3 * texture.getHeight() / rows);
         TextureRegion[][] frameBuff = TextureRegion.split(texture, texture.getWidth() / cols, texture.getHeight() / rows);
 
-        TextureRegion[] frames = new TextureRegion[cols * rows - 1];
+        TextureRegion[] frames = new TextureRegion[cols * rows];
         int index = 0;
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
-                if (!((i == (rows - 1)) && (j == (cols - 1)))) {
-                    frames[index++] = frameBuff[i][j];
-                }
+                frames[index++] = frameBuff[i][j];
             }
         }
 
@@ -48,5 +46,23 @@ public class BaseActorAnimation extends Actor {
         batch.setColor(getColor().r, getColor().g, getColor().b, getColor().a);
         batch.draw(currentFrame, getX(), getY(), getOriginX(), getOriginY(), getWidth(), getHeight(), getScaleX(), getScaleY(), getRotation());
         batch.setColor(1, 1, 1, 1);
+    }
+
+    public void setAnimation(Texture texture, int cols, int rows) {
+        setSize(3 * texture.getWidth() / cols, 3 * texture.getHeight() / rows);
+        TextureRegion[][] frameBuff = TextureRegion.split(texture, texture.getWidth() / cols, texture.getHeight() / rows);
+
+        TextureRegion[] frames = new TextureRegion[cols * rows];
+        int index = 0;
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                frames[index++] = frameBuff[i][j];
+            }
+        }
+
+        animation = new Animation<TextureRegion>(0.05f, frames);
+
+        animation.setPlayMode(Animation.PlayMode.LOOP);
+
     }
 }

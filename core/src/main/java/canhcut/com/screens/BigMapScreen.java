@@ -1,6 +1,7 @@
 package canhcut.com.screens;
 
 import canhcut.com.Area;
+import canhcut.com.ScreenName;
 import canhcut.com.characters.BaseActor;
 import canhcut.com.Master;
 import com.badlogic.gdx.*;
@@ -30,6 +31,7 @@ public class BigMapScreen implements Screen {
 
     @Override
     public void show() {
+        game.screenName = ScreenName.BIGMAPSCREEN;
 
         stage = new Stage();
         stage1 = new Stage();

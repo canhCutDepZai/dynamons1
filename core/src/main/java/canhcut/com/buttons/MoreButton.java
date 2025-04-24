@@ -19,6 +19,8 @@ public class MoreButton extends BaseActor {
     static boolean isBackClicked = false;
     static boolean isEscapeClicked = false;
 
+    static int BACK_BUTTON = 1;
+
 
 
 
@@ -26,7 +28,7 @@ public class MoreButton extends BaseActor {
     super(texture,x,y);
     if(type==0){
         this.texture.setRegion(183, 0, 61, 70);
-    } else if(type==1){
+    } else if(type==BACK_BUTTON){
         this.texture.setRegion(0, 0, 61, 70);
     }else if(type==2){
         this.texture.setRegion(61, 0, 61, 70);
@@ -61,21 +63,23 @@ public class MoreButton extends BaseActor {
                             escape = new MoreButton(texture, 0, 400+61, s, 2, game);
                         }
 
+                        float xPoke = 64;
+                        float yPoke = 0;
                         for(canhcut.com.characters.Character c : BattleScreen.characterAway){
-                            s.addActor(c);
+                            s.addActor(c.avatar);
+                            c.avatar.setPosition(xPoke, yPoke);
+                            xPoke += 64;
                             c.status = Status.ATTACK;
                         }
 
-                    }else if(type==1){
+                    }else if(type==BACK_BUTTON){
                         isBackClicked = false;
                         isBackClicked = true;
                         back.remove();
                         escape.remove();
                         bgAlpha.remove();
-                        for(Character c : BattleScreen.characters){
-                            if(!c.status.equals(Status.ATTACK)){
-                                c.remove();
-                            }
+                        for(Character c : BattleScreen.characterAway){
+                            c.avatar.remove();
                         }
                     }
                     else if(type==2){
